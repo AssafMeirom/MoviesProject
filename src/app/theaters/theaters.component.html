@@ -1,0 +1,28 @@
+<app-googlemaps></app-googlemaps>
+
+<h1>Theater locations</h1>
+<input type="text" placeholder="Search by name" />
+<input type="text" placeholder="Search by name" />
+<input type="text" placeholder="Search by name" />
+
+<hr />
+
+<table id="users">
+  <tr>
+    <th *ngFor="let column of headers">
+      {{ column }}
+    </th>
+    <th>Marker</th>
+  </tr>
+
+  <tr *ngFor="let row of theathers">
+    <td *ngFor="let column of headers">
+      {{ row[column] }}
+    </td>
+    <td>
+      <button><a href="#" (click)="onSelect(row)">Marker</a></button>
+    </td>
+  </tr>
+</table>
+
+<br />
