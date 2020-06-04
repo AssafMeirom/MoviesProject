@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
 @Component({
   selector: 'app-googlemaps',
@@ -10,35 +10,48 @@ export class GooglemapsComponent implements OnInit {
   @ViewChild(MapInfoWindow, { static: false }) info: MapInfoWindow;
 
   zoom = 12;
-  center: google.maps.LatLngLiteral;
+  @Input() center: google.maps.LatLngLiteral;
   options: google.maps.MapOptions = {
-    zoomControl: false,
-    scrollwheel: false,
-    disableDoubleClickZoom: false,
+    center: new google.maps.LatLng(0, 0),
+    zoomControl: true,
+    scrollwheel: true,
+    disableDoubleClickZoom: true,
     mapTypeId: 'roadmap',
-    maxZoom: 15,
+    maxZoom: 30,
     minZoom: 8,
   };
   markers = [];
   infoContent = '';
 
+  constructor() {}
   ngOnInit() {
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.center = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-    });
-  }
-
-  moveToLocation(latitude: string, altitude: string) {
     this.center = {
-      lat: parseFloat(latitude),
-      lng: parseFloat(altitude),
+      lng: 34.747586,
+      lat: 31.979674,
     };
   }
 
+  moveToLocation(newCenter) {
+    console.log('this newCenter', newCenter);
+    console.log('this center1', parseFloat(newCenter.lat));
+    console.log('this center2', parseFloat(newCenter.lng));
+    const test = newCenter.lat;
+    const test2 = newCenter.lng;
+    this.center = {
+      lat: +test,
+      lng: +test2,
+    };
+    console.log('this center', this.center);
+  }
+
   zoomIn() {
+    const test1 = '31.979674';
+    const test2 = '34.747586';
+    this.center = {
+      lat: parseFloat(test1),
+      lng: parseFloat(test2),
+    };
+
     if (this.zoom < this.options.maxZoom) this.zoom++;
   }
 
@@ -51,7 +64,7 @@ export class GooglemapsComponent implements OnInit {
   }
 
   logCenter() {
-    console.log(JSON.stringify(this.map.getCenter()));
+    console.log(this.center);
   }
 
   addMarker() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { newsService } from '../news.service';
-import { Post } from '../../../../Backend/post.js';
+import { News } from '../news.model';
 
 @Component({
   selector: 'app-news-list',
@@ -8,11 +8,11 @@ import { Post } from '../../../../Backend/post.js';
   styleUrls: ['./news-list.component.css'],
 })
 export class NewsListComponent implements OnInit {
-  news: any;
+  news: News[] = [];
 
-  constructor(private newsService: newsService) {}
-
-  ngOnInit() {
-    this.news = this.newsService.showNews();
+  constructor(private newsService: newsService) {
+    this.news = newsService.news;
   }
+
+  ngOnInit() {}
 }

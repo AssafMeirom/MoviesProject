@@ -1,1 +1,14 @@
-<p>news-item works!</p>
+<a href="#" class="list-group-item clearfix">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{ news.title }}</h4>
+    <p class="list-group-item-text">{{ news.description }}</p>
+  </div>
+  <span class="pull-right">
+    <img
+      src="{{ news.Date }}"
+      alt="{{ news.linkToNews }}"
+      class="img-responsive"
+      style="max-height: 50px;"
+    />
+  </span>
+</a>

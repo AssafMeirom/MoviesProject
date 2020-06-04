@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieListComponent } from './movies/movie-list/movie-list.component';
-import { MovieDetailComponent } from './movies/movie-detail/movie-detail.component';
 import { MovieItemComponent } from './movies/movie-list/movie-item/movie-item.component';
 import { NewsComponent } from './news/news.component';
 import { NewsItemComponent } from './news/news-list//news-item/news-item.component';
@@ -23,7 +22,6 @@ import { GooglemapsComponent } from './theaters/googlemaps/googlemaps.component'
     HeaderComponent,
     MoviesComponent,
     MovieListComponent,
-    MovieDetailComponent,
     MovieItemComponent,
     NewsComponent,
     NewsItemComponent,

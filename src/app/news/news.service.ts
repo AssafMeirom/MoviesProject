@@ -14,7 +14,6 @@ export class newsService {
       .pipe(
         map((postData: any) => {
           return postData.map((newsIn) => {
-            console.log('title :', newsIn);
             this.news.push(newsIn);
             return this.news;
           });
@@ -34,7 +33,6 @@ export class newsService {
       .pipe(
         map((postData: any) => {
           return postData.map((newsIn) => {
-            console.log('title :', newsIn);
             this.news.push(newsIn);
             return this.news;
           });

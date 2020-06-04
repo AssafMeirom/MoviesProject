@@ -1,1 +1,14 @@
-<p>movie-item works!</p>
+<a href="#" class="list-group-item clearfix">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{ movie.Title }}</h4>
+    <p class="list-group-item-text">{{ movie.Plot }}</p>
+  </div>
+  <span class="pull-right">
+    <img
+      src="{{ movie.Year }}"
+      alt="{{ movie.Title }}"
+      class="img-responsive"
+      style="max-height: 50px;"
+    />
+  </span>
+</a>
