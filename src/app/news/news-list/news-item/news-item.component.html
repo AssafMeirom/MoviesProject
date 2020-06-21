@@ -1,14 +1,16 @@
-<a href="#" class="list-group-item clearfix">
-  <div class="pull-left">
-    <h4 class="list-group-item-heading">{{ news.title }}</h4>
-    <p class="list-group-item-text">{{ news.description }}</p>
+<div class="card">
+  <img src="{{ news.imagePath }}" alt="" class="card__image" />
+  <div class="card__content">
+    <p>{{ news.description }}</p>
+    <div class="card__info">
+      <div>
+        {{ news.Date }}
+      </div>
+      <div>
+        <a href="{{ 'http://' + news.linkToNews }}" class="card__link">
+          Full Article
+        </a>
+      </div>
+    </div>
   </div>
-  <span class="pull-right">
-    <img
-      src="{{ news.Date }}"
-      alt="{{ news.linkToNews }}"
-      class="img-responsive"
-      style="max-height: 50px;"
-    />
-  </span>
-</a>
+</div>

@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  EventEmitter,
+} from '@angular/core';
 import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
 @Component({
   selector: 'app-googlemaps',
@@ -24,34 +30,30 @@ export class GooglemapsComponent implements OnInit {
   infoContent = '';
 
   constructor() {}
-  ngOnInit() {
-    this.center = {
-      lng: 34.747586,
-      lat: 31.979674,
-    };
-  }
+  ngOnInit() {}
 
-  moveToLocation(newCenter) {
-    console.log('this newCenter', newCenter);
-    console.log('this center1', parseFloat(newCenter.lat));
-    console.log('this center2', parseFloat(newCenter.lng));
-    const test = newCenter.lat;
-    const test2 = newCenter.lng;
+  onMarkerSelected(newCenter: google.maps.LatLngLiteral) {
+    const newCenterLat = newCenter.lat;
+    const newCenterLng = newCenter.lng;
     this.center = {
-      lat: +test,
-      lng: +test2,
+      lat: +newCenterLat,
+      lng: +newCenterLng,
     };
-    console.log('this center', this.center);
+    this.markers.push({
+      position: {
+        lat: this.center.lat,
+        lng: this.center.lng,
+      },
+      label: {
+        color: 'red',
+      },
+      options: {
+        animation: google.maps.Animation.BOUNCE,
+      },
+    });
   }
 
   zoomIn() {
-    const test1 = '31.979674';
-    const test2 = '34.747586';
-    this.center = {
-      lat: parseFloat(test1),
-      lng: parseFloat(test2),
-    };
-
     if (this.zoom < this.options.maxZoom) this.zoom++;
   }
 
@@ -70,15 +72,12 @@ export class GooglemapsComponent implements OnInit {
   addMarker() {
     this.markers.push({
       position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
+        lat: this.center.lat,
+        lng: this.center.lng,
       },
       label: {
         color: 'red',
-        text: 'Marker label ' + (this.markers.length + 1),
       },
-      title: 'Marker title ' + (this.markers.length + 1),
-      info: 'Marker info ' + (this.markers.length + 1),
       options: {
         animation: google.maps.Animation.BOUNCE,
       },

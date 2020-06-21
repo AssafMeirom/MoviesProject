@@ -1,8 +1,13 @@
-<div class="row">
-  <div class="col-xs-12">
-    <app-news-item
-      *ngFor="let singleNews of news"
-      [news]="singleNews"
-    ></app-news-item>
-  </div>
+<label for="news">Enter Genre:</label>
+<input
+  type="text"
+  [(ngModel)]="searchNews"
+  (input)="searchInNews()"
+  id="news"
+/>
+<div class="newsList">
+  <app-news-item
+    *ngFor="let singleNews of news.reverse()"
+    [news]="singleNews"
+  ></app-news-item>
 </div>

@@ -15,6 +15,9 @@ import { NewsListComponent } from './news/news-list/news-list.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { TheatersComponent } from './theaters/theaters.component';
 import { GooglemapsComponent } from './theaters/googlemaps/googlemaps.component';
+import { FormsModule } from '@angular/forms';
+import { D3Directive } from './d3/d3.directive';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +32,15 @@ import { GooglemapsComponent } from './theaters/googlemaps/googlemaps.component'
     DropdownDirective,
     TheatersComponent,
     GooglemapsComponent,
+    D3Directive,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     GoogleMapsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

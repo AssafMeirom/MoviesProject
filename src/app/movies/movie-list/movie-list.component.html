@@ -1,8 +1,45 @@
-<div class="row">
-  <div class="col-xs-12">
-    <app-movie-item
-      *ngFor="let singleMovie of movies"
-      [movie]="singleMovie"
-    ></app-movie-item>
-  </div>
+<input
+  type="text"
+  [(ngModel)]="title"
+  (input)="searchLogic()"
+  placeholder="Search By Title"
+/>
+<input
+  type="text"
+  [(ngModel)]="year"
+  (input)="searchLogic()"
+  placeholder="Search By Year"
+/>
+<input
+  type="text"
+  [(ngModel)]="genre"
+  (input)="searchLogic()"
+  placeholder="Search By Genre"
+/>
+
+<button class="btn btn-primary" (click)="cleanSearch()">New Search</button>
+
+<h2>Advanced Search</h2>
+<input
+  type="text"
+  [(ngModel)]="advancedFromYear"
+  placeholder="Search From Year..."
+/>
+<input
+  type="text"
+  [(ngModel)]="advancedRuntime"
+  placeholder="Runtime Greater than..."
+/>
+
+<button class="btn btn-primary" (click)="searchAdvancedLogic()">
+  Advanced Search
+</button>
+<button class="btn btn-primary" (click)="cleanAdvancedSearch()">
+  New Search
+</button>
+<div class="movieslist">
+  <app-movie-item
+    *ngFor="let singleMovie of movies"
+    [movie]="singleMovie"
+  ></app-movie-item>
 </div>

@@ -1,8 +1,24 @@
 <app-googlemaps [center]="center"></app-googlemaps>
 <h1>Theater locations</h1>
-<input type="text" placeholder="Search by name" />
-<input type="text" placeholder="Search by name" />
-<input type="text" placeholder="Search by name" />
+<input
+  type="text"
+  [(ngModel)]="name"
+  (input)="searchLogic()"
+  placeholder="Search By Name"
+/>
+<input
+  type="text"
+  [(ngModel)]="address"
+  (input)="searchLogic()"
+  placeholder="Search By Address"
+/>
+<input
+  type="text"
+  [(ngModel)]="phone"
+  (input)="searchLogic()"
+  placeholder="Search By Phone"
+/>
+<button class="btn btn-primary" (click)="cleanSearch()">Clear Search</button>
 
 <table id="users">
   <tr>

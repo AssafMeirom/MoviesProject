@@ -1,20 +1,22 @@
 export class Movie {
   public Title: string;
   public Year: string;
-  public Runtime: string;
+  public Runtime: number;
   public Genre: string;
   public Plot: string;
   public Metascore: string;
   public imdbRating: string;
+  public imagePath: string;
 
   constructor(
     Title: string,
     Year: string,
-    Runtime: string,
+    Runtime: number,
     Genre: string,
     Plot: string,
     Metascore: string,
-    imdbRating: string
+    imdbRating: string,
+    imagePath: string
   ) {
     this.Title = Title;
     this.Year = Year;
@@ -23,5 +25,6 @@ export class Movie {
     this.Plot = Plot;
     this.Metascore = Metascore;
     this.imdbRating = imdbRating;
+    this.imagePath = imagePath;
   }
 }

@@ -1,9 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { MapInfoWindow, MapMarker, GoogleMap } from '@angular/google-maps';
-
 import { theaterService } from './theaters.service';
 import { Theaters } from './theaters.model';
-import { GooglemapsComponent } from './googlemaps/googlemaps.component';
 @Component({
   selector: 'app-theaters',
   templateUrl: './theaters.component.html',
@@ -12,15 +9,16 @@ import { GooglemapsComponent } from './googlemaps/googlemaps.component';
 })
 export class TheatersComponent implements OnInit {
   theathers: Theaters[] = [];
-  theather: Theaters;
-  googleMaps: GooglemapsComponent;
+  name: string;
+  address: string;
+  phone: string;
+
   center: google.maps.LatLngLiteral = {
-    lat: null,
-    lng: null,
+    lat: 31.979674,
+    lng: 34.747586,
   };
 
   constructor(public theaterService: theaterService) {
-    this.googleMaps = new GooglemapsComponent();
     this.theathers = theaterService.news;
   }
 
@@ -28,12 +26,20 @@ export class TheatersComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSelect(singleTheater) {
-    this.center.lat = parseFloat(singleTheater.lat);
-    this.center.lng = parseFloat(singleTheater.alt);
-    console.log('testing', this.center);
-    // this.newCenter.lat = parseFloat(singleTheater.lat);
-    // this.newCenter.lng = parseFloat(singleTheater.lng);
-    //this.googleMaps.moveToLocation(this.newCenter);
+  onSelect(singleTheater: Theaters) {
+    this.center = { lat: +singleTheater.lat, lng: +singleTheater.alt };
+  }
+
+  searchLogic() {
+    this.theaterService.filterInDb(this.name, this.address, this.phone);
+    this.theathers = this.theaterService.news;
+  }
+
+  cleanSearch() {
+    this.name = '';
+    this.address = '';
+    this.phone = '';
+    this.theaterService.showAllMovies();
+    this.theathers = this.theaterService.news;
   }
 }

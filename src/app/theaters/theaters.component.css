@@ -4,7 +4,8 @@
 
 h1 {
   text-align: center;
-  color: blueviolet;
+  color: cornflowerblue;
+  border-style: black 1px;
 }
 
 #users {
@@ -31,6 +32,6 @@ h1 {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: blueviolet;
+  background-color: cornflowerblue;
   color: white;
 }

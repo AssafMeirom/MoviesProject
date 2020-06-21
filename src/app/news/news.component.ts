@@ -11,7 +11,7 @@ import { News } from './news.model';
 export class NewsComponent implements OnInit {
   posts: News[] = [];
 
-  constructor(private http: HttpClient, public newsService: newsService) {}
+  constructor(private http: HttpClient) {}
   ngOnInit(): void {}
 
   // showNews() {
