@@ -1,4 +1,23 @@
 <h2>Info Page</h2>
-<!-- <script src="https://d3js.org/d3.v2.js"></script> -->
+<div
+  *ngIf="show"
+  appD3
+  id="my_dataviz"
+  [dramaCounter]="dramaCounter"
+  [horrorCounter]="horrorCounter"
+  [comedyCounter]="comedyCounter"
+  [actionCounter]="actionCounter"
+  [adventureCounter]="adventureCounter"
+  [thrillerCounter]="thrillerCounter"
+  [romanceCounter]="romanceCounter"
+  [mysteryCounter]="mysteryCounter"
+></div>
 
-<div appD3></div>
+<input
+  type="text"
+  [(ngModel)]="countWord"
+  placeholder="Count word appearance"
+/>
+
+<button class="btn btn-primary" (click)="countWords()">Count Appearance</button>
+<h2>The Number Of Times The Word Appear In News: {{ resultAlgo }}</h2>

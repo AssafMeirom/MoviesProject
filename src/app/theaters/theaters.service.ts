@@ -19,7 +19,7 @@ export class theaterService {
               newsIn.lat,
               newsIn.alt
             );
-            this.news.push(newsIn);
+            this.news.push(singleTheater);
             return this.news;
           });
         })
@@ -65,6 +65,7 @@ export class theaterService {
   }
 
   showAllMovies() {
+    this.news = [];
     const databaseNews = this.http
       .get<{ message: any; post: any }>('http://localhost:3000/api/getTheaters')
       .pipe(

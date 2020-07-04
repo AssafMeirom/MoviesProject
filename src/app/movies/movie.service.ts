@@ -4,20 +4,40 @@ import { map } from 'rxjs/operators';
 import { Movie } from './movie.model';
 @Injectable()
 export class movieService {
-  movies: Movie[] = [];
+  horrorCounter: number = 0;
+  comedyCounter: number = 0;
+  dramaCounter: number = 0;
+  actionCounter: number = 0;
+  adventureCounter: number = 0;
+  thrillerCounter: number = 0;
+  romanceCounter: number = 0;
+  mysteryCounter: number = 0;
 
+  movies: Movie[] = [];
   constructor(private http: HttpClient) {
     const databaseNews = this.http
       .get<{ message: any; post: any }>('http://localhost:3000/api/getMovies')
       .pipe(
         map((postData: any) => {
           return postData.map((newsIn) => {
-            this.movies.push(newsIn);
+            let singleMovie = new Movie(
+              newsIn.Title,
+              newsIn.Year,
+              newsIn.Runtime,
+              newsIn.Genre,
+              newsIn.Plot,
+              newsIn.Metascore,
+              newsIn.imdbRating,
+              newsIn.imagePath
+            );
+            this.movies.push(singleMovie);
             return this.movies;
           });
         })
       )
-      .subscribe((responseData) => {});
+      .subscribe((responseData) => {
+        return this.movies;
+      });
   }
 
   async filterInDb(title, year, genre) {
@@ -48,7 +68,6 @@ export class movieService {
               newsIn.imagePath
             );
             this.movies.push(singleMovie);
-            console.log('the movies :', this.movies);
             return this.movies;
           });
         })
@@ -94,20 +113,29 @@ export class movieService {
   }
 
   showAllMovies() {
-    console.log('movies ', this.movies);
+    this.movies = [];
     const databaseNews = this.http
       .get<{ message: any; post: any }>('http://localhost:3000/api/getMovies')
       .pipe(
         map((postData: any) => {
-          this.movies = [];
           return postData.map((newsIn) => {
-            this.movies.push(newsIn);
+            let singleMovie = new Movie(
+              newsIn.Title,
+              newsIn.Year,
+              newsIn.Runtime,
+              newsIn.Genre,
+              newsIn.Plot,
+              newsIn.Metascore,
+              newsIn.imdbRating,
+              newsIn.imagePath
+            );
+            this.movies.push(singleMovie);
             return this.movies;
           });
         })
       )
       .subscribe((responseData) => {
-        console.log('movies ', this.movies);
+        return this.movies;
       });
   }
 }

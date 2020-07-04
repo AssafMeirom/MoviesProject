@@ -26,40 +26,11 @@ export class GooglemapsComponent implements OnInit {
     maxZoom: 30,
     minZoom: 8,
   };
-  markers = [];
+  @Input() markers = [];
   infoContent = '';
 
   constructor() {}
   ngOnInit() {}
-
-  onMarkerSelected(newCenter: google.maps.LatLngLiteral) {
-    const newCenterLat = newCenter.lat;
-    const newCenterLng = newCenter.lng;
-    this.center = {
-      lat: +newCenterLat,
-      lng: +newCenterLng,
-    };
-    this.markers.push({
-      position: {
-        lat: this.center.lat,
-        lng: this.center.lng,
-      },
-      label: {
-        color: 'red',
-      },
-      options: {
-        animation: google.maps.Animation.BOUNCE,
-      },
-    });
-  }
-
-  zoomIn() {
-    if (this.zoom < this.options.maxZoom) this.zoom++;
-  }
-
-  zoomOut() {
-    if (this.zoom > this.options.minZoom) this.zoom--;
-  }
 
   click(event: google.maps.MouseEvent) {
     console.log(event);
@@ -67,21 +38,6 @@ export class GooglemapsComponent implements OnInit {
 
   logCenter() {
     console.log(this.center);
-  }
-
-  addMarker() {
-    this.markers.push({
-      position: {
-        lat: this.center.lat,
-        lng: this.center.lng,
-      },
-      label: {
-        color: 'red',
-      },
-      options: {
-        animation: google.maps.Animation.BOUNCE,
-      },
-    });
   }
 
   openInfo(marker: MapMarker, content) {

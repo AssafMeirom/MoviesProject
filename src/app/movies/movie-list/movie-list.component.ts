@@ -13,9 +13,10 @@ export class MovieListComponent implements OnInit {
   movies: Movie[] = [];
   advancedFromYear: string = '';
   advancedRuntime: string = '';
-
   constructor(private movieServices: movieService) {
     this.movies = this.movieServices.movies;
+    console.log('testing 1', this.movies.length);
+    console.log('testing 2', this.movieServices.dramaCounter);
   }
 
   ngOnInit(): void {}
@@ -36,8 +37,6 @@ export class MovieListComponent implements OnInit {
     this.movies = this.movieServices.movies;
   }
   searchAdvancedLogic() {
-    console.log('testing the stuff ', this.advancedFromYear);
-    console.log('testing the stuff3 ', this.advancedRuntime);
     this.movieServices.advancedFilterInDb(
       this.advancedFromYear,
       this.advancedRuntime

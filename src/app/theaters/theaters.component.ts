@@ -12,7 +12,7 @@ export class TheatersComponent implements OnInit {
   name: string;
   address: string;
   phone: string;
-
+  markers = [];
   center: google.maps.LatLngLiteral = {
     lat: 31.979674,
     lng: 34.747586,
@@ -28,6 +28,18 @@ export class TheatersComponent implements OnInit {
 
   onSelect(singleTheater: Theaters) {
     this.center = { lat: +singleTheater.lat, lng: +singleTheater.alt };
+    this.markers.push({
+      position: {
+        lat: this.center.lat,
+        lng: this.center.lng,
+      },
+      label: {
+        color: 'red',
+      },
+      options: {
+        animation: google.maps.Animation.BOUNCE,
+      },
+    });
   }
 
   searchLogic() {

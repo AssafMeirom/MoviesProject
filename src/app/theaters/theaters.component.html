@@ -1,4 +1,4 @@
-<app-googlemaps [center]="center"></app-googlemaps>
+<app-googlemaps [center]="center" [markers]="markers"></app-googlemaps>
 <h1>Theater locations</h1>
 <input
   type="text"
@@ -33,7 +33,9 @@
       {{ row[column] }}
     </td>
     <td>
-      <button><a href="#" (click)="onSelect(row)">Marker</a></button>
+      <button>
+        <a routerLink="theathers" (click)="onSelect(row)">Marker</a>
+      </button>
     </td>
   </tr>
 </table>
