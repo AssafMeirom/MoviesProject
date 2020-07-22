@@ -1,33 +1,30 @@
 <app-googlemaps [center]="center" [markers]="markers"></app-googlemaps>
 <h1>Theater locations</h1>
-<input
-  type="text"
-  [(ngModel)]="name"
-  (input)="searchLogic()"
-  placeholder="Search By Name"
-/>
-<input
-  type="text"
-  [(ngModel)]="address"
-  (input)="searchLogic()"
-  placeholder="Search By Address"
-/>
-<input
-  type="text"
-  [(ngModel)]="phone"
-  (input)="searchLogic()"
-  placeholder="Search By Phone"
-/>
-<button class="btn btn-primary" (click)="cleanSearch()">Clear Search</button>
+<input #nameSearch type="text" placeholder="Search By Name" />
+<input #addressSearch type="text" placeholder="Search By Address" />
+<input #phoneSearch type="text" placeholder="Search By Phone" />
+<button
+  class="btn btn-primary"
+  (click)="Search(nameSearch.value, addressSearch.value, phoneSearch.value)"
+>
+  Search
+</button>
+&nbsp;
+<button class="btn btn-primary" (click)="cleanSearch()">Show Theaters</button>
+&nbsp;
+<button class="btn btn-primary" (click)="addPostToMongo()">
+  Create Theater
+</button>
 
-<table id="users">
+<hr />
+
+<table id="users" *ngIf="show">
   <tr>
     <th *ngFor="let column of headers">
       {{ column }}
     </th>
     <th>Marker</th>
   </tr>
-
   <tr *ngFor="let row of theathers">
     <td *ngFor="let column of headers">
       {{ row[column] }}
@@ -36,8 +33,52 @@
       <button>
         <a routerLink="theathers" (click)="onSelect(row)">Marker</a>
       </button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button mat-button color="warn" (click)="onDelete(row.id)">
+        Delete
+      </button>
+      <button
+        mat-raised-button
+        (click)="editDialog(row.id, row.name, row.address, row.phone)"
+      >
+        Edit
+      </button>
     </td>
   </tr>
 </table>
+<hr />
 
 <br />
+
+<div *ngIf="edit">
+  <input type="text" [(ngModel)]="singleTheaterEdit.name" />
+  <input type="text" [(ngModel)]="singleTheaterEdit.address" />
+  <input type="text" [(ngModel)]="singleTheaterEdit.phone" />
+  <hr />
+  <button class="btn btn-primary" (click)="sendUpdateMovie()">Save</button>
+  <button class="btn btn-primary" (click)="backToList()">Back</button>
+</div>
+
+<div *ngIf="createTheater">
+  <input #name type="text" placeholder="Enter Name" />
+  <input #address type="text" placeholder="Enter Address" />
+  <input #phone type="text" placeholder="Enter Phone" />
+  <input #alt type="text" placeholder="Enter Altitude" />
+  <input #lat type="text" placeholder="Enter longitude" />
+  <hr />
+  <button
+    class="btn btn-primary"
+    (click)="
+      sendCreatedTheater(
+        name.value,
+        address.value,
+        phone.value,
+        alt.value,
+        lat.value
+      )
+    "
+  >
+    Save
+  </button>
+  <button class="btn btn-primary" (click)="backToList()">Back</button>
+</div>

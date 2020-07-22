@@ -18,7 +18,8 @@ import { GooglemapsComponent } from './theaters/googlemaps/googlemaps.component'
 import { FormsModule } from '@angular/forms';
 import { D3Directive } from './d3/d3.directive';
 import { InfoComponent } from './info/info.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,8 @@ import { InfoComponent } from './info/info.component';
     HttpClientModule,
     GoogleMapsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

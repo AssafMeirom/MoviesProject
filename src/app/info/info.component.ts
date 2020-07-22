@@ -51,6 +51,7 @@ export class InfoComponent implements OnInit {
         map((postData: any) => {
           return postData.map((newsIn) => {
             let singleMovie = new Movie(
+              newsIn._id,
               newsIn.Title,
               newsIn.Year,
               newsIn.Runtime,

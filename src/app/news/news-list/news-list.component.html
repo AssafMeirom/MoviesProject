@@ -1,10 +1,3 @@
-<label for="news">Enter Genre:</label>
-<input
-  type="text"
-  [(ngModel)]="searchNews"
-  (input)="searchInNews()"
-  id="news"
-/>
 <div class="newsList">
   <app-news-item
     *ngFor="let singleNews of news.reverse()"

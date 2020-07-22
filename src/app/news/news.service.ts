@@ -5,7 +5,6 @@ import { News } from './news.model';
 @Injectable()
 export class newsService {
   news: News[] = [];
-
   constructor(private http: HttpClient) {
     const databaseNews = this.http
       .get<{ message: any; post: any }>(

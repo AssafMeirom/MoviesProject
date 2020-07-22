@@ -12,5 +12,12 @@
         {{ ", " + movie.Genre }}
       </div>
     </div>
+    <button mat-button color="warn" (click)="onDelete(movie.id)">Delete</button>
+    <button
+      mat-raised-button
+      (click)="openDialog(movie.id, movie.Plot, movie.Title, movie.Year)"
+    >
+      Edit
+    </button>
   </div>
 </div>

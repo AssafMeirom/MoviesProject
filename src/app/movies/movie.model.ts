@@ -1,4 +1,5 @@
 export class Movie {
+  public id: String;
   public Title: string;
   public Year: string;
   public Runtime: number;
@@ -9,6 +10,7 @@ export class Movie {
   public imagePath: string;
 
   constructor(
+    id: string,
     Title: string,
     Year: string,
     Runtime: number,
@@ -18,6 +20,7 @@ export class Movie {
     imdbRating: string,
     imagePath: string
   ) {
+    this.id = id;
     this.Title = Title;
     this.Year = Year;
     this.Runtime = Runtime;

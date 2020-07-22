@@ -10,11 +10,11 @@ import { News } from '../news.model';
 export class NewsListComponent implements OnInit {
   news: News[] = [];
   searchNews: string;
+  isloading = true;
   constructor(private newsService: newsService) {
     this.news = newsService.news;
+    this.isloading = false;
   }
 
   ngOnInit() {}
-
-  searchInNews() {}
 }
